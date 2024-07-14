@@ -608,7 +608,11 @@ div[class~="onTop"] > .count {
 .rightPanel {
 	flex: 70%;
 	height: 100vh;
-    background: url('https://media.istockphoto.com/id/945663596/photo/texture-of-blue-paper.jpg?s=612x612&w=0&k=20&c=dWe4c4_haijXdwZ2uxeK69MzUgpkxDfuyhveTPX_c04=') 100% center;}
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5svCUwYy2CT3hMt6p4KscjIqCp2rXi1g81WgO9mt8zlOjbockxM4Sc8zSslw7kEz15DA&usqp=CAU') 100% center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 
 .rightPanel .topBar {
 	position: relative;
@@ -724,21 +728,25 @@ div[class~="onTop"] > .count {
 
 .userBg {
 }
-
+.chats-sec{
+    width: 60%;
+    margin: auto;
+}
 .msg {
     position: relative;
     width: auto;
     min-width: 100px;
     max-width: 45%;
     height: auto;
-    padding: 15px;
-    padding-bottom: 35px;
+    padding: 8px;
+    padding-bottom: 25px;
     margin: 20px 15px;
-    margin-bottom: 0px;
+    margin-bottom: 5px;
     background: #FFF;
     border-radius: 7px;
     clear: both;
-    font-size: 15px;
+    font-size: 14px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .msg:nth-last-child(1) {

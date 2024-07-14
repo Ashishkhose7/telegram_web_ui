@@ -71,6 +71,9 @@ const Dashboard = () => {
                     <div className="topBar">
                         <div className="rightSide">
                             <button className="tbButton search">
+                                <i className="material-icons call">call</i>
+                            </button>
+                            <button className="tbButton search">
                                 <i className="material-icons">&#xE8B6;</i>
                             </button>
                             <button className="tbButton otherOptions">
@@ -90,37 +93,49 @@ const Dashboard = () => {
                     </div>
 
                     <div className="convHistory userBg">
+                        <div className="chats-sec">
+                            <div className="msg messageReceived">
+                                Dude, why no one did this before?
+                                <span className="timestamp">00:00</span>
+                            </div>
 
-                        <div className="msg messageReceived">
-                            Dude, why no one did this before?
-                            <span className="timestamp">00:00</span>
-                        </div>
+                            <div className="msg messageReceived">
+                                Dude, why no one did this before?
+                                <span className="timestamp">00:00</span>
+                            </div>
 
-                        <div className="msg messageSent">
-                            Dunno...
-                            <i className="material-icons readStatus">done_all</i>
-                            <span className="timestamp">00:01</span>
-                        </div>
+                            <div className="msg messageSent">
+                                    Lorem ipsum dolor sit amet.
+                                <i className="material-icons readStatus">done_all</i>
+                                <span className="timestamp">00:01</span>
+                            </div>
 
-                        <div className="msg messageReceived">
-                            This don't matter now, I did it!
-                            <span className="timestamp">00:02</span>
-                        </div>
+                            <div className="msg messageSent">
+                                Dunno...
+                                <i className="material-icons readStatus">done_all</i>
+                                <span className="timestamp">00:01</span>
+                            </div>
 
-                        <div className="msg messageReceived">
-                            Hope someone see this... Someday...
-                            <span className="timestamp">00:02</span>
-                        </div>
+                            <div className="msg messageReceived">
+                                This don't matter now, I did it!
+                                <span className="timestamp">00:02</span>
+                            </div>
 
-                        <div className="msg messageSent">
-                            Actually, more than 10K people did... Congrats!
-                            <i className="material-icons readStatus">done</i>
-                            <span className="timestamp">00:04</span>
+                            <div className="msg messageReceived">
+                                Hope someone see this... Someday...
+                                <span className="timestamp">00:02</span>
+                            </div>
+
+                            <div className="msg messageSent">
+                                Actually, more than 10K people did... Congrats!
+                                <i className="material-icons readStatus">done</i>
+                                <span className="timestamp">00:04</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="replyBar d-flex">
-                        <div className="text-in">
+                    <div className="replyBar d-flex mt-3">
+                        <div className="text-in mt-1">
                         <button className="attach ps-2">
                             <i className="material-icons">face</i>
                         </button>

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react"
 import Popover from '@mui/material/Popover';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 const Dashboard = () => {
     // useEffect(() => {
@@ -9,13 +12,18 @@ const Dashboard = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorE2, setAnchorE2] = useState(null);
     const [anchorE3, setAnchorE3] = useState(null);
+    const [value, setValue] = useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
-  
+
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
 
     const handleClick2 = (event) => {
@@ -33,13 +41,106 @@ const Dashboard = () => {
     const handleClose3 = () => {
         setAnchorE3(null);
     };
-  
+
     const open = Boolean(anchorEl);
     const open2 = Boolean(anchorE2);
     const open3 = Boolean(anchorE3);
     const id = open ? 'simple-popover' : undefined;
     const id2 = open2 ? 'simple-popover' : undefined;
     const id3 = open3 ? 'simple-popover' : undefined;
+
+    const loadTabs = () => {
+        if (value == 0) {
+            return (
+                <div className="chats px-2">
+                    <div className="chatButton active">
+                        <div className="chatInfo">
+                            <div className="image my-image">
+
+                            </div>
+
+                            <p className="name">
+                                Renan Mayrinck
+                            </p>
+
+                            <p className="message">Actually, more ...</p>
+                        </div>
+
+                        <div className="status onTop">
+                            <p className="date">00:02</p>
+                            <p className="count">10</p>
+                            <i className="material-icons read">done_all</i>
+
+                            {/* <svg className="fixed" viewBox="0 0 24 24">
+                                    <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+                                </svg> */}
+                        </div>
+                    </div>
+                    <div className="chatButton">
+                        <div className="chatInfo">
+                            <div className="image">
+
+                            </div>
+
+                            <p className="name">
+                                Doge
+                            </p>
+
+                            <p className="message">Wow!</p>
+                        </div>
+
+                        <div className="status normal">
+                            <p className="date">Now</p>
+                            <p className="count">42</p>
+                            <i className="material-icons read">done_all</i>
+                            <i className="material-icons fixed">loyalty</i>
+                        </div>
+                    </div>
+                </div>
+            )
+        } else if (value == 1) {
+            return (
+                <div className="text-center">
+                    Group-1
+                </div>
+            )
+        }
+        else if (value == 2) {
+            return (
+                <div className="text-center">
+                    Group-2
+                </div>
+            )
+        }
+        else if (value == 3) {
+            return (
+                <div className="text-center">
+                    Group-3
+                </div>
+            )
+        }
+        else if (value == 4) {
+            return (
+                <div className="text-center">
+                    Group-4
+                </div>
+            )
+        }
+        else if (value == 5) {
+            return (
+                <div className="text-center">
+                    Group-5
+                </div>
+            )
+        }
+        else if (value == 6) {
+            return (
+                <div className="text-center">
+                    Group-6
+                </div>
+            )
+        }
+    }
 
     return (
         <>
@@ -51,7 +152,7 @@ const Dashboard = () => {
                                 <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
                             </svg>
                         </button>
-                        <Popover 
+                        <Popover
                             id={id3}
                             open={open3}
                             anchorE3={anchorE3}
@@ -64,69 +165,46 @@ const Dashboard = () => {
                                 vertical: 'top',
                                 horizontal: 'left',
                             }}
-                            >
-                        <ul className="p-1 px-2 popoverlist">
-                            <p> <i className="material-icons mute">bookmark</i>&nbsp;&nbsp;&nbsp;Saved Messages</p>
-                            <p> <i className="material-icons call">menu_book</i>&nbsp;&nbsp;&nbsp;My Stories</p>
-                            <p> <i className="material-icons call">contacts</i>&nbsp;&nbsp;&nbsp;Contacts</p>
-                            <p> <i className="material-icons call">settings</i>&nbsp;&nbsp;&nbsp;Settings</p>
-                            <p> <i className="material-icons call">dark_mode</i>&nbsp;&nbsp;&nbsp;Dark Mode</p>
-                            <p> <i className="material-icons call">animation</i>&nbsp;&nbsp;&nbsp;Animations</p>
-                            <p> <i className="material-icons call">info</i>&nbsp;&nbsp;&nbsp;Telegram Features</p>
-                            <p className=""> <i className="material-icons call">bug_report</i>&nbsp;&nbsp;&nbsp;Report Bug</p>
-                            <p className=""> <i className="material-icons call">text_format</i>&nbsp;&nbsp;&nbsp;Switch to A version</p>
-                            <p className=""> <i className="material-icons call">download</i>&nbsp;&nbsp;&nbsp;Install App</p>
+                            className="rounded"
+                            style={{ borderRadius: '20px' }}
+                        >
+                            <ul className="p-1 px-2 popoverlist">
+                                <p> <i className="material-icons mute">bookmark</i>&nbsp;&nbsp;&nbsp;Saved Messages</p>
+                                <p> <i className="material-icons call">menu_book</i>&nbsp;&nbsp;&nbsp;My Stories</p>
+                                <p> <i className="material-icons call">contacts</i>&nbsp;&nbsp;&nbsp;Contacts</p>
+                                <p> <i className="material-icons call">settings</i>&nbsp;&nbsp;&nbsp;Settings</p>
+                                <p> <i className="material-icons call">dark_mode</i>&nbsp;&nbsp;&nbsp;Dark Mode</p>
+                                <p> <i className="material-icons call">animation</i>&nbsp;&nbsp;&nbsp;Animations</p>
+                                <p> <i className="material-icons call">info</i>&nbsp;&nbsp;&nbsp;Telegram Features</p>
+                                <p className=""> <i className="material-icons call">bug_report</i>&nbsp;&nbsp;&nbsp;Report Bug</p>
+                                <p className=""> <i className="material-icons call">text_format</i>&nbsp;&nbsp;&nbsp;Switch to A version</p>
+                                <p className=""> <i className="material-icons call">download</i>&nbsp;&nbsp;&nbsp;Install App</p>
 
-                        </ul>
+                            </ul>
                         </Popover>
                         <input className="searchChats" type="search" placeholder="Search..." />
                     </header>
-                    <div className="chats px-2">
-                        <div className="chatButton active">
-                            <div className="chatInfo">
-                                <div className="image my-image">
-
-                                </div>
-
-                                <p className="name">
-                                    Renan Mayrinck
-                                </p>
-
-                                <p className="message">Actually, more ...</p>
-                            </div>
-
-                            <div className="status onTop">
-                                <p className="date">00:02</p>
-                                <p className="count">10</p>
-                                <i className="material-icons read">done_all</i>
-                                
-                                {/* <svg className="fixed" viewBox="0 0 24 24">
-                                    <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
-                                </svg> */}
-                            </div>
-                        </div>
-
-                        <div className="chatButton">
-                            <div className="chatInfo">
-                                <div className="image">
-
-                                </div>
-
-                                <p className="name">
-                                    Doge
-                                </p>
-
-                                <p className="message">Wow!</p>
-                            </div>
-
-                            <div className="status normal">
-                                <p className="date">Now</p>
-                                <p className="count">42</p>
-                                <i className="material-icons read">done_all</i>
-                                <i className="material-icons fixed">loyalty</i>
-                            </div>
-                        </div>
+                    <div className="tabs mb-3 border-bottom">
+                        <Box sx={{ maxWidth: { xs: 320, sm: 400 }, bgcolor: 'background.paper', fontWeight: 'Bold' }}>
+                            <Tabs
+                                value={value}
+                                onChange={handleChange}
+                                variant="scrollable"
+                                scrollButtons={false}
+                                aria-label="scrollable prevent tabs example"
+                            >
+                                <Tab label="All" className="fw-bold" style={{ textTransform: "capitalize" }} />
+                                <Tab label="Group-1" className="fw-bold" style={{ textTransform: "capitalize" }} />
+                                <Tab label="Group-2" className="fw-bold" style={{ textTransform: "capitalize" }} />
+                                <Tab label="Group-3" className="fw-bold" style={{ textTransform: "capitalize" }} />
+                                <Tab label="Group-4" className="fw-bold" style={{ textTransform: "capitalize" }} />
+                                <Tab label="Group-5" className="fw-bold" style={{ textTransform: "capitalize" }} />
+                                <Tab label="Group-6" className="fw-bold" style={{ textTransform: "capitalize" }} />
+                            </Tabs>
+                        </Box>
                     </div>
+                    {loadTabs()}
+
                 </div>
 
                 <div className="rightPanel">
@@ -142,8 +220,8 @@ const Dashboard = () => {
                                 <i className="material-icons" >more_vert</i>
                             </button>
                         </div>
-                                    {/* popover */}
-                        <Popover 
+                        {/* popover */}
+                        <Popover
                             id={id}
                             open={open}
                             anchorEl={anchorEl}
@@ -158,17 +236,17 @@ const Dashboard = () => {
                                 vertical: 'bottom',
                                 horizontal: 'right',
                             }}
-                            >
-                        <ul className="p-1 px-2 popoverlist">
-                            <p> <i className="material-icons mute">volume_off</i>&nbsp;&nbsp;&nbsp;Mute</p>
-                            <p> <i className="material-icons call">phone_in_talk</i>&nbsp;&nbsp;&nbsp;Call</p>
-                            <p> <i className="material-icons call">video_call</i>&nbsp;&nbsp;&nbsp;Video Call</p>
-                            <p> <i className="material-icons call">check_circle</i>&nbsp;&nbsp;&nbsp;Select Messages</p>
-                            <p> <i className="material-icons call">share</i>&nbsp;&nbsp;&nbsp;Share Contact</p>
-                            <p> <i className="material-icons call">redeem</i>&nbsp;&nbsp;&nbsp;Gift Premium</p>
-                            <p> <i className="material-icons call">block</i>&nbsp;&nbsp;&nbsp;Block User</p>
-                            <p className="text-danger"> <i className="material-icons call">delete</i>&nbsp;&nbsp;&nbsp;Delete Chat</p>
-                        </ul>
+                        >
+                            <ul className="p-1 px-2 popoverlist">
+                                <p> <i className="material-icons mute">volume_off</i>&nbsp;&nbsp;&nbsp;Mute</p>
+                                <p> <i className="material-icons call">phone_in_talk</i>&nbsp;&nbsp;&nbsp;Call</p>
+                                <p> <i className="material-icons call">video_call</i>&nbsp;&nbsp;&nbsp;Video Call</p>
+                                <p> <i className="material-icons call">check_circle</i>&nbsp;&nbsp;&nbsp;Select Messages</p>
+                                <p> <i className="material-icons call">share</i>&nbsp;&nbsp;&nbsp;Share Contact</p>
+                                <p> <i className="material-icons call">redeem</i>&nbsp;&nbsp;&nbsp;Gift Premium</p>
+                                <p> <i className="material-icons call">block</i>&nbsp;&nbsp;&nbsp;Block User</p>
+                                <p className="text-danger"> <i className="material-icons call">delete</i>&nbsp;&nbsp;&nbsp;Delete Chat</p>
+                            </ul>
                         </Popover>
                         <button className="go-back text-light fw-bold">
                             RM
@@ -194,7 +272,7 @@ const Dashboard = () => {
                             </div>
 
                             <div className="msg messageSent">
-                                    Lorem ipsum dolor sit amet.
+                                Lorem ipsum dolor sit amet.
                                 <i className="material-icons readStatus">done_all</i>
                                 <span className="timestamp">00:01</span>
                             </div>
@@ -225,43 +303,43 @@ const Dashboard = () => {
 
                     <div className="replyBar d-flex mt-3">
                         <div className="text-in mt-1">
-                        <button className="attach ps-2" aria-describedby={id2} variant="contained" onClick={handleClick2}>
-                            <i className="material-icons">mood</i>
-                        </button>
-                        <Popover
-                            id={id2}
-                            open={open2} 
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'center',
-                              }}
-                              transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'center',
-                              }}
-                            onClose={handleClose2}
-                        >
-                        <div className="p-1 px-2 popoverlist">
-                            <li>
-                                <i className="material-icons mute">face</i>
-                                <i className="material-icons call">mood</i>
-                                <i className="material-icons call">add_reaction</i>
-                                <i className="material-icons call">face_6</i>
-                                <i className="material-icons call">face_3</i>
-                            </li>
-                            <li>
-                                <i className="material-icons call">mood_bad</i>
-                                <i className="material-icons call">face_4</i>
-                                <i className="material-icons call">face_2</i>
-                                <i className="material-icons call">face_5</i>
-                                <i className="material-icons call">flag</i>
-                            </li>
-                        </div>
-                        </Popover>
-                        <input type="text" className="replyMessage pe-5" placeholder="Type your message..." />
-                        <button className="attach pe-3">
-                            <i className="material-icons d45">attach_file</i>
-                        </button>
+                            <button className="attach ps-2" aria-describedby={id2} variant="contained" onClick={handleClick2}>
+                                <i className="material-icons">mood</i>
+                            </button>
+                            <Popover
+                                id={id2}
+                                open={open2}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'center',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'center',
+                                }}
+                                onClose={handleClose2}
+                            >
+                                <div className="p-1 px-2 popoverlist">
+                                    <li>
+                                        <i className="material-icons mute">face</i>
+                                        <i className="material-icons call">mood</i>
+                                        <i className="material-icons call">add_reaction</i>
+                                        <i className="material-icons call">face_6</i>
+                                        <i className="material-icons call">face_3</i>
+                                    </li>
+                                    <li>
+                                        <i className="material-icons call">mood_bad</i>
+                                        <i className="material-icons call">face_4</i>
+                                        <i className="material-icons call">face_2</i>
+                                        <i className="material-icons call">face_5</i>
+                                        <i className="material-icons call">flag</i>
+                                    </li>
+                                </div>
+                            </Popover>
+                            <input type="text" className="replyMessage pe-5" placeholder="Type your message..." />
+                            <button className="attach pe-3">
+                                <i className="material-icons d45">attach_file</i>
+                            </button>
                         </div>
 
                         <div className="otherTools">

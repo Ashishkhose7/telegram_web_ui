@@ -1,11 +1,11 @@
+import { RouterProvider } from 'react-router-dom';
+import router from './Router/router';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        Telegram Web UI
-      </header>
+      <RouterProvider router={router}/>
     </div>
   );
 }

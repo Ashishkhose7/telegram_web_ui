@@ -3,6 +3,7 @@ import Popover from '@mui/material/Popover';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { NavLink } from "react-router-dom";
 
 const Dashboard = () => {
     // useEffect(() => {
@@ -13,6 +14,7 @@ const Dashboard = () => {
     const [anchorE2, setAnchorE2] = useState(null);
     const [anchorE3, setAnchorE3] = useState(null);
     const [value, setValue] = useState(0);
+    const [activechat, setActivechat] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -53,49 +55,72 @@ const Dashboard = () => {
         if (value == 0) {
             return (
                 <div className="chats px-2">
-                    <div className="chatButton active">
-                        <div className="chatInfo">
-                            <div className="image my-image">
+                        <div className={`chatButton ${activechat==0 ? 'active' :null}`} onClick={()=>setActivechat(0)}>
+                            <div className="chatInfo">
+                                <div className="image my-image">
 
+                                </div>
+
+                                <p className="name">
+                                    Ronnie
+                                </p>
+
+                                <p className="message">Actually, more ...</p>
                             </div>
 
-                            <p className="name">
-                                Renan Mayrinck
-                            </p>
+                            <div className="status normal">
+                                <p className="date">00:02</p>
+                                <p className={`count ${activechat==0 ? 'text-primary bg-light' :null}`}>10</p>
+                                <i className="material-icons read">done_all</i>
 
-                            <p className="message">Actually, more ...</p>
+                                {/* <svg className="fixed" viewBox="0 0 24 24">
+                                        <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+                                    </svg> */}
+                            </div>
                         </div>
+                        <div className={`chatButton ${activechat==1 ? 'active' :null}`} onClick={()=>setActivechat(1)}>
+                            <div className="chatInfo">
+                                <div className="image">
 
-                        <div className="status onTop">
-                            <p className="date">00:02</p>
-                            <p className="count">10</p>
-                            <i className="material-icons read">done_all</i>
+                                </div>
 
-                            {/* <svg className="fixed" viewBox="0 0 24 24">
-                                    <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
-                                </svg> */}
-                        </div>
-                    </div>
-                    <div className="chatButton">
-                        <div className="chatInfo">
-                            <div className="image">
+                                <p className="name">
+                                    Raj singh
+                                </p>
 
+                                <p className="message">Wow!</p>
                             </div>
 
-                            <p className="name">
-                                Doge
-                            </p>
-
-                            <p className="message">Wow!</p>
+                            <div className="status normal">
+                                <p className="date">Now</p>
+                                <p className={`count ${activechat==1 ? 'text-primary bg-light' :null}`}>42</p>
+                                <i className="material-icons read">done_all</i>
+                                <i className="material-icons fixed">loyalty</i>
+                            </div>
                         </div>
+                        <div className={`chatButton ${activechat==2 ? 'active' :null}`} onClick={()=>setActivechat(2)}>
+                            <div className="chatInfo">
+                                <div className="image my-image">
 
-                        <div className="status normal">
-                            <p className="date">Now</p>
-                            <p className="count">42</p>
-                            <i className="material-icons read">done_all</i>
-                            <i className="material-icons fixed">loyalty</i>
+                                </div>
+
+                                <p className="name">
+                                    Ronnie
+                                </p>
+
+                                <p className="message">Actually, more ...</p>
+                            </div>
+
+                            <div className="status normal">
+                                <p className="date">00:02</p>
+                                <p className={`count ${activechat==2 ? 'text-primary bg-light' :null}`}>10</p>
+                                <i className="material-icons read">done_all</i>
+
+                                {/* <svg className="fixed" viewBox="0 0 24 24">
+                                        <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+                                    </svg> */}
+                            </div>
                         </div>
-                    </div>
                 </div>
             )
         } else if (value == 1) {
@@ -203,6 +228,7 @@ const Dashboard = () => {
                             </Tabs>
                         </Box>
                     </div>
+
                     {loadTabs()}
 
                 </div>
@@ -254,7 +280,7 @@ const Dashboard = () => {
                         </button>
 
                         <div className="leftSide">
-                            <p className="chatName">Renan Mayrinck</p>
+                            <p className="chatName">Ronnie</p>
                             <p className="chatStatus">Online</p>
                         </div>
                     </div>

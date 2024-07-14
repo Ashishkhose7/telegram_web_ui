@@ -802,9 +802,10 @@ div[class~="onTop"] > .count {
     border-radius: 10px;
     overflow: hidden;
     height: 13%;
+	width: 450px;
 }
 .replyBar .attach {
-	/* width: 70px; */
+	width: 10%;
 	height: -webkit-fill-available;
     color: #777;
 	background: #FFF;
@@ -822,7 +823,7 @@ div[class~="onTop"] > .count {
 }
 
 .replyBar .replyMessage {
-	/* width: calc(100% - 220px); */
+	width: 80%;
 	float: left;
     height: -webkit-fill-available;
 	padding: 0px 8px;
@@ -1035,4 +1036,35 @@ div[class~="onTop"] > .count {
 
 @media screen and (max-width: 360px) {
 	
+}
+ul[class~="popoverlist"]{
+	margin-bottom: 0px;
+}
+div[class~="popoverlist"] li{
+	list-style: none;
+}
+div[class~="popoverlist"] li i{
+	margin-top: 10px;
+	margin-right: 14px;
+	margin-bottom: 14px;
+	cursor: pointer;
+	color: rgb(247, 8, 120);
+	transform: scale(1.2);
+	transition: transform 200ms;
+}
+div[class~="popoverlist"] li i:hover{
+	transform: scale(1.4);
+}
+.popoverlist p{
+	display: flex;
+	align-items: center;
+	margin-bottom: 8px;
+	padding: 4px;
+	border-radius: 10px;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-weight: 600;
+	cursor: pointer;
+}
+.popoverlist p:hover{
+	background-color: #EEE;
 }

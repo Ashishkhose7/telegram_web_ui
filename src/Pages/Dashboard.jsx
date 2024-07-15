@@ -1,10 +1,11 @@
+/* eslint-disable */ 
 import React, { useEffect, useState } from "react"
 import Popover from '@mui/material/Popover';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import moment from 'moment';
+import Skeleton from '@mui/material/Skeleton';
 
 const Dashboard = () => {
     
@@ -14,7 +15,8 @@ const Dashboard = () => {
     const [value, setValue] = useState(0);
     const [activechat, setActivechat] = useState(0);
     const [userchat, setUserchat] = useState([]);
-    const [username, setUsername] = useState();
+    const [chathistory, setChathistory] = useState([]);
+    const [chatid, setChatid] = useState(3888);
 
     useEffect(() => {
         const loadData = async () =>{
@@ -24,6 +26,16 @@ const Dashboard = () => {
         }
         loadData();
     }, [])
+
+    useEffect(() => {
+        setChathistory([])
+        const loadData = async () =>{
+            const res = await fetch(`https://devapi.beyondchats.com/api/get_chat_messages?chat_id=${chatid}`);
+            const data2 = await res.json();
+            setChathistory(data2.data)
+        }
+        loadData();
+    }, [chatid])
     
 
     const handleChange = (event, newValue) => {
@@ -61,6 +73,11 @@ const Dashboard = () => {
     const id2 = open2 ? 'simple-popover' : undefined;
     const id3 = open3 ? 'simple-popover' : undefined;
 
+    const handleChat = (chatid, index) => {
+        setActivechat(index);
+        setChatid(chatid)
+    };
+
     const loadTabs = (chat) => {
         if (value == 0) {
             return (
@@ -68,7 +85,7 @@ const Dashboard = () => {
                         {
                            chat.length > 0 ? chat.map((data, index)=>{
                             return(
-                            <div key={data.id} className={`chatButton ${activechat==index ? 'active' :null}`} onClick={()=>setActivechat(index)}>
+                            <div key={data.id} className={`chatButton ${activechat==index ? 'active' :null}`} onClick={()=>{handleChat(data.id, index)}}>
                                 <div className="chatInfo">
                                     <div className="userpro text-light fw-bold mt-2 ms-2">
                                         {
@@ -80,17 +97,25 @@ const Dashboard = () => {
                                         {data.creator.name || 'User'}
                                     </p>
 
-                                    <p className="message">Actually, more ...</p>
+                                    <p className="message">Chat..</p>
                                 </div>
 
                                 <div className="status normal">
-                                    <p className="date">{moment(data.created_at).format('L')}</p>
+                                    <p className="date">{moment(data.created_at).format('l')}</p>
                                     <p className={`count ${activechat==index ? 'text-primary bg-light' :null}`}>10</p>
                                     <i className="material-icons read">done_all</i>
                                 </div>
                             </div>
                             )
-                           }) : "Loading"
+                        }) :  <span>
+                            <Skeleton animation="wave" />
+                            <Skeleton animation="wave" />
+                            <Skeleton animation="wave" />
+                            <Skeleton animation="wave" />
+                            <Skeleton animation="wave" />
+                            <Skeleton animation="wave" />
+                        </span>
+
                         }
                 </div>
             )
@@ -134,6 +159,27 @@ const Dashboard = () => {
                 <div className="text-center">
                     Group-6
                 </div>
+            )
+        }
+    }
+
+    const loadChats = (chats) => {
+        if (chats.length > 0) {
+            return(
+                chats.map((ch) =>{
+                    return(
+                        <div key={ch.id} className={`msg ${ch.sender_id==1?'messageReceived':'messageSent'}`}>
+                            <p className={`${ch.sender_id==1?"mb-1 text-danger fw-bold": "d-none"}`}>{ch.sender.name}</p>
+                            <p className="chatfamily">{ch.message}</p>
+                            <i className={`${ch.sender_id==1?"d-none": "material-icons readStatus"}`}>done_all</i>
+                            <span className="timestamp">{moment(ch.created_at).endOf('day').fromNow()}</span>
+                        </div>
+                    )
+                })
+            )
+        }else{
+            return (
+                <p className="text-center mt-2 loadingchat">chats loading..</p>
             )
         }
     }
@@ -243,54 +289,18 @@ const Dashboard = () => {
                             </ul>
                         </Popover>
                         <button className="go-back text-light fw-bold">
-                            RM
+                            B
                         </button>
 
                         <div className="leftSide">
-                            <p className="chatName">Ronnie</p>
+                            <p className="chatName">BeyondChat</p>
                             <p className="chatStatus">Online</p>
                         </div>
                     </div>
 
                     <div className="convHistory userBg">
                         <div className="chats-sec">
-                            <div className="msg messageReceived">
-                                Dude, why no one did this before?
-                                <span className="timestamp">00:00</span>
-                            </div>
-
-                            <div className="msg messageReceived">
-                                Dude, why no one did this before?
-                                <span className="timestamp">00:00</span>
-                            </div>
-
-                            <div className="msg messageSent">
-                                Lorem ipsum dolor sit amet.
-                                <i className="material-icons readStatus">done_all</i>
-                                <span className="timestamp">00:01</span>
-                            </div>
-
-                            <div className="msg messageSent">
-                                Dunno...
-                                <i className="material-icons readStatus">done_all</i>
-                                <span className="timestamp">00:01</span>
-                            </div>
-
-                            <div className="msg messageReceived">
-                                This don't matter now, I did it!
-                                <span className="timestamp">00:02</span>
-                            </div>
-
-                            <div className="msg messageReceived">
-                                Hope someone see this... Someday...
-                                <span className="timestamp">00:02</span>
-                            </div>
-
-                            <div className="msg messageSent">
-                                Actually, more than 10K people did... Congrats!
-                                <i className="material-icons readStatus">done</i>
-                                <span className="timestamp">00:04</span>
-                            </div>
+                            {loadChats(chathistory)}
                         </div>
                     </div>
 

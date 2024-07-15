@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import React, { useEffect } from "react"
 import { Outlet } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";

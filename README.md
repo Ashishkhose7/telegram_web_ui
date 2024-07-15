@@ -1,5 +1,5 @@
 # Telegram Web App UI
-The project is based on the Telegram Web Application UI created using the following technologies
+The project is cloned of the Telegram Web Application UI created using the following technologies
 1. React.js
 2. Bootstrap-5
 3. Material UI
@@ -7,6 +7,9 @@ The project is based on the Telegram Web Application UI created using the follow
 Project displays the following UI
 1. User Chats
 2. User chat history
+
+# Live Deploy Url
+https://telegram-web-ui.netlify.app/
 
 # Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

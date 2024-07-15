@@ -471,11 +471,31 @@ header {
 
 .chats {
 	width: 100%;
-	height: calc(100vh - 70px);
+	height: 75%;
 	float: left;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+::-webkit-scrollbar {
+	width: 3px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey; 
+	border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: gainsboro; 
+	border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: ghostwhite; 
+  }
 
 .chatButton {
 	float: left;
@@ -508,13 +528,13 @@ header {
 }
 
 .chatInfo .image {
-	position: absolute;
+	/* position: absolute;
 	width: 55px;
 	height: 55px;
 	background: #DDD url(https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg) no-repeat center;
 	background-size: cover;
 	border-radius: 100%;
-	margin: 13px 13px;
+	margin: 13px 13px; */
 }
 
 .chatInfo .my-image {
@@ -525,14 +545,14 @@ header {
 	float: left;
 	font-weight: 600;
 	margin-left: 80px;
-	margin-top: 18px;
+	margin-top: -50px;
 }
 
 .chatInfo .message {
 	float: left;
 	clear: left;
 	margin-left: 80px;
-	/* margin-top: 7px; */
+	margin-top: -25px;
     font-size: 14px;
 }
 
@@ -556,7 +576,7 @@ div[class~="normal"] > .fixed {
 
 div[class~="normal"] > .count {
 	right: 10px;
-	bottom: 7px;
+	bottom: 12px;
 }
 
 div[class~="onTop"] > .fixed {
@@ -593,15 +613,15 @@ div[class~="onTop"] > .count {
 
 .status .date {
 	position: absolute;
-	right: 12px;
-	top: 12px;
+	right: 10px;
+	top: 10px;
 	font-size: 12px;
 }
 
 .status .read {
 	position: absolute;
-	right: 53px;
-	top: 6px;
+	right: 78px;
+	top: 10px;
     font-size: 18px;
 }
 
@@ -1078,3 +1098,16 @@ div[class~="popoverlist"] li i:hover{
 	color: #FFF;
 	background: #419fd9;
 } */
+ .userpro{
+	width: 55px;
+	height: 55px;
+	background: lightgreen;
+	border: none;
+	border-radius: 100%;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	/* position: relative;
+	left: -120px;
+	top: 10px; */
+ }

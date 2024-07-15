@@ -3,124 +3,95 @@ import Popover from '@mui/material/Popover';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import moment from 'moment';
 
 const Dashboard = () => {
-    // useEffect(() => {
-
-    //     console.log("dashboard loaded")
-    // }, [])
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [anchorE2, setAnchorE2] = useState(null);
-    const [anchorE3, setAnchorE3] = useState(null);
+    
+    const [anchore1, setAnchore1] = useState(null);
+    const [anchore2, setAnchore2] = useState(null);
+    const [anchore3, setAnchore3] = useState(null);
     const [value, setValue] = useState(0);
     const [activechat, setActivechat] = useState(0);
+    const [userchat, setUserchat] = useState([]);
+    const [username, setUsername] = useState();
+
+    useEffect(() => {
+        const loadData = async () =>{
+            const response = await fetch('https://devapi.beyondchats.com/api/get_all_chats?page=1');
+            const data = await response.json();
+            setUserchat(data.data.data)
+        }
+        loadData();
+    }, [])
+    
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
     const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+        setAnchore1(event.currentTarget);
     };
 
     const handleClose = () => {
-        setAnchorEl(null);
+        setAnchore1(null);
     };
 
     const handleClick2 = (event) => {
-        setAnchorE2(event.currentTarget);
+        setAnchore2(event.currentTarget);
     };
 
     const handleClose2 = () => {
-        setAnchorE2(null);
+        setAnchore2(null);
     };
 
     const handleClick3 = (event) => {
-        setAnchorE3(event.currentTarget);
+        setAnchore3(event.currentTarget);
     };
 
     const handleClose3 = () => {
-        setAnchorE3(null);
+        setAnchore3(null);
     };
 
-    const open = Boolean(anchorEl);
-    const open2 = Boolean(anchorE2);
-    const open3 = Boolean(anchorE3);
+    const open = Boolean(anchore1);
+    const open2 = Boolean(anchore2);
+    const open3 = Boolean(anchore3);
     const id = open ? 'simple-popover' : undefined;
     const id2 = open2 ? 'simple-popover' : undefined;
     const id3 = open3 ? 'simple-popover' : undefined;
 
-    const loadTabs = () => {
+    const loadTabs = (chat) => {
         if (value == 0) {
             return (
                 <div className="chats px-2">
-                        <div className={`chatButton ${activechat==0 ? 'active' :null}`} onClick={()=>setActivechat(0)}>
-                            <div className="chatInfo">
-                                <div className="image my-image">
+                        {
+                           chat.length > 0 ? chat.map((data, index)=>{
+                            return(
+                            <div key={data.id} className={`chatButton ${activechat==index ? 'active' :null}`} onClick={()=>setActivechat(index)}>
+                                <div className="chatInfo">
+                                    <div className="userpro text-light fw-bold mt-2 ms-2">
+                                        {
+                                           data.creator.name ? data.creator.name.at(0) : 'u'
+                                        }
+                                    </div>
 
+                                    <p className="name">
+                                        {data.creator.name || 'User'}
+                                    </p>
+
+                                    <p className="message">Actually, more ...</p>
                                 </div>
 
-                                <p className="name">
-                                    Ronnie
-                                </p>
-
-                                <p className="message">Actually, more ...</p>
-                            </div>
-
-                            <div className="status normal">
-                                <p className="date">00:02</p>
-                                <p className={`count ${activechat==0 ? 'text-primary bg-light' :null}`}>10</p>
-                                <i className="material-icons read">done_all</i>
-
-                                {/* <svg className="fixed" viewBox="0 0 24 24">
-                                        <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
-                                    </svg> */}
-                            </div>
-                        </div>
-                        <div className={`chatButton ${activechat==1 ? 'active' :null}`} onClick={()=>setActivechat(1)}>
-                            <div className="chatInfo">
-                                <div className="image">
-
+                                <div className="status normal">
+                                    <p className="date">{moment(data.created_at).format('L')}</p>
+                                    <p className={`count ${activechat==index ? 'text-primary bg-light' :null}`}>10</p>
+                                    <i className="material-icons read">done_all</i>
                                 </div>
-
-                                <p className="name">
-                                    Raj singh
-                                </p>
-
-                                <p className="message">Wow!</p>
                             </div>
-
-                            <div className="status normal">
-                                <p className="date">Now</p>
-                                <p className={`count ${activechat==1 ? 'text-primary bg-light' :null}`}>42</p>
-                                <i className="material-icons read">done_all</i>
-                                <i className="material-icons fixed">loyalty</i>
-                            </div>
-                        </div>
-                        <div className={`chatButton ${activechat==2 ? 'active' :null}`} onClick={()=>setActivechat(2)}>
-                            <div className="chatInfo">
-                                <div className="image my-image">
-
-                                </div>
-
-                                <p className="name">
-                                    Ronnie
-                                </p>
-
-                                <p className="message">Actually, more ...</p>
-                            </div>
-
-                            <div className="status normal">
-                                <p className="date">00:02</p>
-                                <p className={`count ${activechat==2 ? 'text-primary bg-light' :null}`}>10</p>
-                                <i className="material-icons read">done_all</i>
-
-                                {/* <svg className="fixed" viewBox="0 0 24 24">
-                                        <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
-                                    </svg> */}
-                            </div>
-                        </div>
+                            )
+                           }) : "Loading"
+                        }
                 </div>
             )
         } else if (value == 1) {
@@ -180,7 +151,7 @@ const Dashboard = () => {
                         <Popover
                             id={id3}
                             open={open3}
-                            anchorE3={anchorE3}
+                            anchore1={anchore3}
                             onClose={handleClose3}
                             anchorOrigin={{
                                 vertical: 'top',
@@ -229,7 +200,7 @@ const Dashboard = () => {
                         </Box>
                     </div>
 
-                    {loadTabs()}
+                    {loadTabs(userchat)}
 
                 </div>
 
@@ -246,14 +217,11 @@ const Dashboard = () => {
                                 <i className="material-icons" >more_vert</i>
                             </button>
                         </div>
-                        {/* popover */}
                         <Popover
                             id={id}
                             open={open}
-                            anchorEl={anchorEl}
-                            // anchorReference="anchorPosition"
+                            anchore1={anchore1}
                             onClose={handleClose}
-                            // anchorPosition={{ top: 380, left: 1300 }}
                             anchorOrigin={{
                                 vertical: 'center',
                                 horizontal: 'right',
@@ -276,7 +244,6 @@ const Dashboard = () => {
                         </Popover>
                         <button className="go-back text-light fw-bold">
                             RM
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Go back</title><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg> */}
                         </button>
 
                         <div className="leftSide">

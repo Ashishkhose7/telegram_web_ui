@@ -1,3 +1,6 @@
+# Live Deploy Url
+https://telegram-web-ui.netlify.app/
+
 # Telegram Web App UI
 The project is cloned of the Telegram Web Application UI created using the following technologies
 1. React.js
@@ -7,9 +10,6 @@ The project is cloned of the Telegram Web Application UI created using the follo
 Project displays the following UI
 1. User Chats
 2. User chat history
-
-# Live Deploy Url
-https://telegram-web-ui.netlify.app/
 
 # Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
